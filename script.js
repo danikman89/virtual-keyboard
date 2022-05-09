@@ -25,6 +25,15 @@ const createKeys = (lg) => {
     keyItem.setAttribute('type', 'button');
     keyItem.classList.add('keyboard__key');
 
+    const addRemoveClass = () => {
+      keyItem.addEventListener('mousedown', () => {
+        keyItem.classList.add('active');
+      });
+      keyItem.addEventListener('mouseup', () => {
+        keyItem.classList.remove('active');
+        text.focus();
+      });
+    };
     const createClassAndAttribute = ([className]) => {
       keyItem.classList.add(...[className]);
       keyItem.textContent = small;
@@ -34,10 +43,13 @@ const createKeys = (lg) => {
     };
     switch (key.code) {
       case 'Backspace':
-        createClassAndAttribute(['keyboard__key-func', `key--${i}`]);
+        createClassAndAttribute(['key__back', ',', 'keyboard__key-func']);
+        addRemoveClass();
         keyItem.addEventListener('click', () => {
-          text.focus();
-          text.setRangeText('', text.selectionStart - 1, text.selectionEnd);
+          if (text.selectionStart !== 0 && text.selectionEnd !== 0) {
+            text.focus();
+            text.setRangeText('', text.selectionStart - 1, text.selectionEnd);
+          }
         });
         break;
       // eslint-disable-next-line no-duplicate-case
@@ -52,7 +64,8 @@ const createKeys = (lg) => {
         break;
       // eslint-disable-next-line no-duplicate-case
       case 'Enter':
-        createClassAndAttribute(['keyboard__key-func', `key--${i}`]);
+        createClassAndAttribute(['key__enter']);
+        addRemoveClass();
         keyItem.addEventListener('click', () => {
           text.focus();
           text.value += '\n';
@@ -61,6 +74,7 @@ const createKeys = (lg) => {
         // eslint-disable-next-line no-duplicate-case
       case 'Space':
         createClassAndAttribute(['key__space', 'keyboard__key-func']);
+        addRemoveClass();
         // keyItem.setAttribute('id', `${code}`);
         keyItem.addEventListener('click', () => {
           text.focus();
@@ -69,38 +83,46 @@ const createKeys = (lg) => {
         break;
         // eslint-disable-next-line no-duplicate-case
       case 'ShiftLeft':
-        createClassAndAttribute(['keyboard__key-func']);
+        createClassAndAttribute(['key__shift-left']);
+        addRemoveClass();
         break;
         // eslint-disable-next-line no-duplicate-case
       case 'ShiftRight':
-        createClassAndAttribute(['keyboard__key-func']);
+        createClassAndAttribute(['key__shift-right']);
+        addRemoveClass();
         break;
         // eslint-disable-next-line no-duplicate-case
       case 'ControlLeft':
         createClassAndAttribute(['keyboard__key-func', 'key-lang--left']);
+        addRemoveClass();
         break;
         // eslint-disable-next-line no-duplicate-case
       case 'ControlRight':
         createClassAndAttribute(['keyboard__key-func', 'key-lang--right']);
+        addRemoveClass();
         break;
         // eslint-disable-next-line no-duplicate-case
       case 'AltLeft':
         createClassAndAttribute(['keyboard__key-func', 'key-lang--left']);
+        addRemoveClass();
         break;
         // eslint-disable-next-line no-duplicate-case
       case 'AltRight':
         createClassAndAttribute(['keyboard__key-func', 'key-lang--right']);
+        addRemoveClass();
         break;
         // eslint-disable-next-line no-duplicate-case
       case 'MetaLeft':
         createClassAndAttribute(['keyboard__key-func']);
+        addRemoveClass();
         break;
         // eslint-disable-next-line no-duplicate-case
       case 'Tab':
-        createClassAndAttribute(['keyboard__key-func']);
+        createClassAndAttribute(['key__tab']);
+        addRemoveClass();
         keyItem.addEventListener('click', () => {
-          text.value += '\t';
           text.focus();
+          text.value += '\t';
         });
         break;
       default:

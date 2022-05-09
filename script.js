@@ -57,8 +57,6 @@ const createKeys = (lg) => {
         createClassAndAttribute(['key__caps', 'keyboard__key-func', `key--${i}`]);
         keyItem.addEventListener('click', () => {
           capsLock = !capsLock;
-          // if (capsLock) {
-          // }
           keyItem.classList.toggle('key__caps--active');
         });
         break;
@@ -75,7 +73,6 @@ const createKeys = (lg) => {
       case 'Space':
         createClassAndAttribute(['key__space', 'keyboard__key-func']);
         addRemoveClass();
-        // keyItem.setAttribute('id', `${code}`);
         keyItem.addEventListener('click', () => {
           text.focus();
           text.value += ' ';
@@ -219,10 +216,10 @@ document.addEventListener('keydown', (e) => {
       if (key.classList.contains('key--char')) {
         // eslint-disable-next-line no-param-reassign
         key.innerText = key.dataset.shift;
-        // key.innerText = key.innerText.toUpperCase();
       }
     }
     if ((e.altKey && e.ctrlKey && pressed && caps === false)) {
+      e.preventDefault();
       document.querySelector('.keyboard__keys').remove();
       if (abc) {
         init(1);

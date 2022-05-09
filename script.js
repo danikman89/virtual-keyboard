@@ -169,3 +169,83 @@ window.addEventListener('DOMContentLoaded', () => {
   abc = true;
   document.querySelector('textarea').focus();
 });
+
+let pressed = true;
+let caps = false;
+
+document.addEventListener('keydown', (e) => {
+  e.preventDefault();
+  document.querySelector(`.keyboard__key[data = ${e.code}]`).classList.add('active');
+  document.querySelectorAll('.keyboard__key').forEach((key) => {
+    if (e.code === 'Space' && pressed) {
+      text.value += ' ';
+      pressed = false;
+    } if (e.code === key.id) {
+      text.value += key.innerText;
+    } if (e.code === 'Backspace' && pressed) {
+      if (text.selectionStart !== 0 && text.selectionEnd !== 0) {
+        text.setRangeText('', text.selectionStart - 1, text.selectionEnd);
+      }
+      pressed = false;
+    }
+    if (e.code === 'Enter' && pressed) {
+      text.value += '\n';
+      pressed = false;
+    }
+    if (e.code === 'Tab' && pressed) {
+      text.value += '\t';
+      pressed = false;
+    }
+    if (e.code === 'CapsLock' && pressed) {
+      if (key.classList.contains('key--char')) {
+        if (!caps) {
+          document.querySelectorAll('.key--char').forEach((char) => {
+            // eslint-disable-next-line no-param-reassign
+            char.innerText = char.dataset.small.toUpperCase();
+          });
+          caps = true;
+        } else {
+          document.querySelectorAll('.key--char').forEach((char) => {
+            // eslint-disable-next-line no-param-reassign
+            char.innerText = char.dataset.small;
+          });
+          caps = false;
+        }
+      }
+      pressed = false;
+      document.querySelector('[data=CapsLock]').classList.toggle('key__caps--active');
+    }
+    if ((e.code === 'ShiftLeft' && caps === false) || (e.code === 'ShiftRight' && caps === false)) {
+      if (key.classList.contains('key--char')) {
+        // eslint-disable-next-line no-param-reassign
+        key.innerText = key.dataset.shift;
+        // key.innerText = key.innerText.toUpperCase();
+      }
+    }
+    if ((e.altKey && e.ctrlKey && pressed && caps === false)) {
+      document.querySelector('.keyboard__keys').remove();
+      if (abc) {
+        init(1);
+        abc = false;
+        pressed = false;
+        document.querySelector('textarea').focus();
+      } else {
+        init(0);
+        abc = true;
+        pressed = false;
+        document.querySelector('textarea').focus();
+      }
+    }
+  });
+});
+
+document.addEventListener('keyup', (e) => {
+  pressed = true;
+  document.querySelectorAll('.keyboard__key').forEach((key) => {
+    if ((e.code === 'ShiftLeft' && caps === false) || (e.code === 'ShiftRight' && caps === false)) {
+      // eslint-disable-next-line no-param-reassign
+      key.innerText = key.dataset.small;
+    }
+    key.classList.remove('active');
+  });
+});

@@ -16,6 +16,11 @@
   transition: all 0.5s;
 }
 
+.keyboard__key:hover {
+  background: #FFB6C1;
+  cursor: pointer;
+}
+
 .keyboard__keys {
   background-color: #DCDCDC;	
   margin:20px;
@@ -39,13 +44,13 @@
 
 }
 
-.active {
+.key__space.active {
   background: #FFB6C1;
   transition: all 0.2s;
 }
 
 .key__space {
-  width: 450px;
+  width: 456px;
 }
 
  .textarea {
@@ -63,11 +68,11 @@
 }
 
 .key--0 {
-  width: 45px;
+  width: 52px;
 }
 
 .key__back {
-  width: 135px;
+  width: 128px;
 }
 
 .key__tab {
@@ -89,3 +94,9 @@
 .key__enter {
   width: 126px;
 }
+
+.key__win {
+  width: 55px;
+}
+
+

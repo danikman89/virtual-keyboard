@@ -1,0 +1,106 @@
+*{
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+}
+
+.keyboard__key {
+  width: 45px;
+  height: 45px;
+  margin: 1.5px;
+  border-radius: 2px;
+  background-color: #FFF5EE;
+  transition: all 0.5s;
+  border: 1px solid #FFB6C1;
+}
+
+.keyboard__key:hover {
+  background: #FFB6C1;
+  cursor: pointer;
+}
+
+.keyboard__keys {
+  background-color: #DCDCDC;	
+  padding: 3px;
+  width: 713px;
+}
+
+.key__caps--active {
+   background: #FFB6C1;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  /* margin-top: 50px; */
+  height: 100vh;
+
+}
+
+.active {
+  background: #FFB6C1;
+  transition: all 0.2s;
+}
+
+.key__space {
+  width: 310px;
+}
+
+ .textarea {
+  display: block;
+  height: 200px;
+  width: 70%;
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #FFB6C1;
+}
+
+.textarea:focus {
+   outline: none;
+}
+
+ h1 {
+  font-size: 20px;
+  color: #87CEFA;
+}
+
+.key--0 {
+  width: 30px;
+}
+
+.key__back {
+  width: 94px;
+}
+
+.key__tab {
+  width: 79px;
+}
+
+.key__shift-left {
+  width: 79px;
+}
+
+.key__shift-right {
+  width: 94px;
+}
+
+.key__caps {
+  width: 79px;
+}
+
+.key__enter {
+  width: 94px;
+}
+
+.key__win {
+  width: 55px;
+}
+
+

@@ -110,7 +110,7 @@ const createKeys = (lg) => {
         break;
         // eslint-disable-next-line no-duplicate-case
       case 'MetaLeft':
-        createClassAndAttribute(['keyboard__key-func']);
+        createClassAndAttribute(['key__win']);
         addRemoveClass();
         break;
         // eslint-disable-next-line no-duplicate-case

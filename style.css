@@ -44,7 +44,7 @@
 
 }
 
-.key__space.active {
+.active {
   background: #FFB6C1;
   transition: all 0.2s;
 }
